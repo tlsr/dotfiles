@@ -1,0 +1,1 @@
+/home/spiderj/dev/petprojects/tmux-powerline-bitbucket-segment/pending_prs.sh
