@@ -1,0 +1,31 @@
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+map <leader>y "+y
+map <leader>Y "+Y
+map <leader>p "_dP
+map <leader>P "+p
+map <leader><leader>p "ap
+
+map <leader>gi <Action>(GotoImplementation)
+map <leader>fb <Action>(RecentLocations)
+map <leader><leader> <Action>(RecentFiles)
+map <leader>f <Action>(ShowReformatFileDialog)
+map <leader>bb <Action>(ToggleLineBreakpoint)
+map <leader>vc <Action>(DebugClass)
+map <leader>dc <Action>(Resume)
+map <leader>cp <Action>(ParameterInfo)
+map <leader>gd <Action>(GotoSuperMethod)
+map <leader>gD <Action>(GotoDeclaration)
+map <leader>ff <Action>(GotoFile)
+map <leader>dj <Action>(StepOver)
+map <leader>dk <Action>(StepInto)
+map <leader>j <Action>(Back)
+map <leader>k <Action>(Forward)
+map <leader>ca <Action>(ShowIntentionActions)
+map [d <Action>(GotoNextError)
+
+map <leader>ff <action>(com.mituuz.fuzzier.Fuzzier)
+map <leader>fm <action>(com.mituuz.fuzzier.FuzzyMover)
+map <leader>fs <action>(com.mituuz.fuzzier.FuzzierVCS)
+map <leader>fg <action>(com.mituuz.fuzzier.FuzzyGrep)
+map <leader>tt <action>(com.mituuz.fuzzier.FuzzyGrep)
