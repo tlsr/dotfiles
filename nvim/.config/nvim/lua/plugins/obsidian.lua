@@ -21,7 +21,7 @@ return {
     workspaces = {
       {
         name = "vault",
-        path = "/home/spiderj/Documents/ObsidianVault",
+        path = "/home/spiderj/Documents/vault",
       },
     },
     ui = {
