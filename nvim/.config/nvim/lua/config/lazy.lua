@@ -20,6 +20,18 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.g._ts_force_sync_parsing = true
+--require('vim._extui').enable({
+-- enable = true, -- Whether to enable or disable the UI.
+-- msg = { -- Options related to the message module.
+--   ---@type 'box'|'cmd' Type of window used to place messages, either in the
+--   ---cmdline or in a separate message box window with ephemeral messages.
+--   pos = 'cmd',
+--   box = { -- Options related to the message box window.
+--     timeout = 4000, -- Time a message is visible.
+--   },
+-- },
+--})
 
 -- Setup lazy.nvim
 require("lazy").setup("plugins")

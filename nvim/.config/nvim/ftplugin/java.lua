@@ -13,12 +13,12 @@ local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(
 
 local bundles = {
   vim.fn.glob(
-  '/home/spiderj/Library/javaDebug/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.1.jar'),
+  '/home/spiderj/libs/javaDebug/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.2.jar'),
 }
 
 
 vim.list_extend(bundles,
-  vim.split(vim.fn.glob("/home/spiderj/Library/javaTestDebug/vscode-java-test/server/*.jar", 1), "\n"))
+  vim.split(vim.fn.glob("/home/spiderj/libs/javaTestDebug/vscode-java-test/server/*.jar", 1), "\n"))
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -59,14 +59,14 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-javaagent:' .. home .. '/.local/share/eclipse/lombok.jar',
     -- 💀
-    '-jar', '/home/spiderj/Library/jdtls/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
+    '-jar', '/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar',
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
 
     -- 💀
-    '-configuration', '/home/spiderj/Library/jdtls/config_linux',
+    '-configuration', '/usr/share/java/jdtls/config_linux',
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
     -- Must point to the                      Change to one of `linux`, `win` or `mac`
     -- eclipse.jdt.ls installation            Depending on your system.

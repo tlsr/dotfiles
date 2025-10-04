@@ -7,11 +7,20 @@ return {
     version = false, -- set this if you want to always pull the latest change
     opts = {
       provider = "openai",
+      --provider = "claude",
       openai = {
         endpoint = "https://api.openai.com/v1",
        -- model = "gpt-4o",
         --model = "o1-preview",
-        model = "o3-mini",
+        model = "gpt-4.1-mini",
+        timeout = 30000, -- Timeout in milliseconds
+        temperature = 0
+       -- ,
+       -- max_completion_tokens = 9096,
+      },
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-sonnet-4-0",
         timeout = 30000, -- Timeout in milliseconds
         temperature = 0
        -- ,
@@ -66,14 +75,14 @@ return {
           },
         },
       },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
+    --  {
+    --    -- Make sure to set this up properly if you have lazy=true
+    --    --'MeanderingProgrammer/render-markdown.nvim',
+    --    opts = {
+    --      file_types = { "markdown", "Avante" },
+    --    },
+    --    ft = { "markdown", "Avante" },
+    --  },
     },
   }
 }

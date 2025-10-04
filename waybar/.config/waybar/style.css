@@ -47,6 +47,7 @@
 #temperature,
 #custom-lock,
 #custom-prs,
+#custom-pomodoro,
 
 #foo {
   background-color: @surface0;
@@ -70,6 +71,10 @@
 }
 
 #custom-prs {
+  color: @red;
+}
+
+#custom-pomodoro {
   color: @red;
 }
 

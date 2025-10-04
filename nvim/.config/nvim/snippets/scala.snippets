@@ -1,0 +1,19 @@
+##
+## Tests
+snippet rtest
+    @Test
+    def test${1}(): Unit = {
+      val session = getTestOrmSession
+      withResources(session) { implicit ctx =>
+				${2}
+	    }
+    }
+
+snippet stest
+  test("${1}") {
+    //given
+    //when
+    //then
+  }
+
+

@@ -110,18 +110,42 @@ return {
           vim.wo.wrap = true
         end,
       })
-      vim.keymap.set("n", "<leader>/", function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-          winblend = 10,
-          previewer = false,
-          layout_config = { width = 0.7 },
-        }))
-      end, { desc = "[/] Fuzzily search in current buffer" })
+--      vim.keymap.set("n", "<leader>/", function()
+--        -- You can pass additional configuration to telescope to change theme, layout, etc.
+--        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+--          winblend = 10,
+--          previewer = false,
+--          layout_config = { width = 0.7 },
+--        }))
+--      end, { desc = "[/] Fuzzily search in current buffer" })
+      --
+      --
+
+      -- https://github.com/nvim-telescope/telescope.nvim/issues/609
+    --  local previewers = require('telescope.previewers')
+    --  local delta_bcommits = previewers.new_termopen_previewer {
+    --    get_command = function(entry)
+    --      return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
+    --    end
+    --  }
+
+    --  M.my_git_bcommits = function(opts)
+    --    opts = opts or {}
+    --    opts.previewer = {
+    --      delta_bcommits,
+    --      previewers.git_commit_message.new(opts),
+    --      previewers.git_commit_diff_as_was.new(opts),
+    --    }
+
+    --    builtin.git_bcommits(opts)
+    --  end
+
+      vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[/] Fuzzily search in current buffer" })
       require("telescope").load_extension("ui-select")
       require("telescope").load_extension("live_grep_args")
       require("telescope").load_extension("advanced_git_search")
-      require('telescope').load_extension('attempt')
+      --require('telescope').load_extension('attempt')
+      require('telescope').load_extension 'attempt'
     end,
   },
 }

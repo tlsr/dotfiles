@@ -4,7 +4,7 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    //"spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
@@ -16,22 +16,21 @@
         //"idle_inhibitor",
         "bluetooth",
         "custom/prs",
+        "custom/pomodoro",
         "pulseaudio",
         "network",
         "power-profiles-daemon",
         "cpu",
         "memory",
-        "temperature",
-      //  "backlight",
-      //  "keyboard-state",
-      //  "sway/language",
-      //  "battery",
-      //  "battery#bat2",
+     //   "temperature",
         "clock",
         "tray"
       //  "custom/power"
     ],
     // Modules configuration
+    "hyprland/window": {
+        "max-length": 50
+    },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -159,6 +158,17 @@
         "escape": true,
         "on-click": "$HOME/.config/waybar/prs/openBitbucket.sh 2> /dev/null",
         "exec": "$HOME/.config/waybar/prs/fetchPrs.sh 2> /dev/null" // Script in resources folder
+    },
+    "custom/pomodoro": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "interval" : 1,
+       // "format-icons": {
+       //     "default": ""
+       // },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/pomodoroStatus/status.sh 2> /dev/null" // Script in resources folder
     },
     "bluetooth": {
         // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system

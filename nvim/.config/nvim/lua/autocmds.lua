@@ -1,0 +1,17 @@
+--vim.api.nvim_create_autocmd({'CmdlineEnter'}, {
+--    group = rnu_augroup,
+--    callback = function(args)
+--       -- if tbl_contains(exclude_ft, vim.bo.filetype) then
+--       --     return
+--       -- end
+--       -- if vim.wo.nu then
+--       --     vim.wo.relativenumber = false
+--       -- end
+--        -- Redraw here to avoid having to first write something for the line numbers to update.
+--        if args.event == 'CmdlineEnter' then
+--            if not vim.tbl_contains({ '@', '-' }, vim.v.event.cmdtype) then
+--                vim.cmd.redraw()
+--            end
+--        end
+--    end,
+--})

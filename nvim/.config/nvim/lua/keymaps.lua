@@ -34,7 +34,6 @@ map("n", "<leader>wd", vim.diagnostic.setqflist, {})
 map("n", "[d", vim.diagnostic.goto_prev, {})
 map("n", "]d", vim.diagnostic.goto_next, {})
 map("n", "<leader>ws", function() require("metals").hover_worksheet() end, {})
-
 map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
 map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
 map('n', '<space>wl', function()
@@ -46,12 +45,14 @@ map('v', "<space>ca", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
 map('n', '<space>f', function() vim.lsp.buf.format { async = true } end, { desc = "Format file" })
 
 
+
 local builtin = require("telescope.builtin")
 map('n', '<leader>gi', builtin.lsp_implementations, { desc = 'Telescope Find Implementations' })
 map('n', '<leader>gr', builtin.lsp_references, { desc = 'Telescope Find Implementations' })
 map('n', '<leader>d', builtin.diagnostics, { desc = 'Telescope Find Implementations' })
 map('n', '<leader>fw', builtin.current_buffer_fuzzy_find, { desc = 'Telescope current buffer fuzzy find' })
-map('n', '<leader>de', function() builtin.diagnostics({severity = "Error"}) end, { desc = 'Telescope Find Implementations'})
+map('n', '<leader>de', function() builtin.diagnostics({severity = "Error"}) end, { desc = 'Telescope Find Errors'})
+map('n', '<leader>lm', function() builtin.lsp_document_symbols({symbols = "method"}) end, { desc = 'Telescope LSP Document Methods'})
 
 
 local gitsigns = require("gitsigns")
@@ -63,6 +64,7 @@ map('n', '<leader>hS', gitsigns.stage_buffer, {})
 map('n', '<leader>hu', gitsigns.undo_stage_hunk, {})
 map('n', '<leader>hR', gitsigns.reset_buffer, {})
 map('n', '<leader>hp', gitsigns.preview_hunk, {})
+map('n', '<leader>hj', gitsigns.nav_hunk, {})
 map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end, {})
 map('n', '<leader>tb', gitsigns.toggle_current_line_blame, {})
 map('n', '<leader>hd', gitsigns.diffthis, {})
@@ -88,6 +90,7 @@ map('n', '<leader>br', dap.clear_breakpoints, { desc = "Clear breakpoints" })
 map('n', '<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>', { desc = "List breakpoints" })
 
 map('n', "<leader>dc", dap.continue, { desc = "Continue" })
+map('n', "<leader>c",  dap.run_to_cursor, { desc = "Continue" })
 map('n', "<leader>dj", dap.step_over, { desc = "Step over" })
 map('n', "<leader>dk", dap.step_into, { desc = "Step into" })
 map('n', "<leader>do", dap.step_out, { desc = "Step out" })
@@ -106,14 +109,15 @@ map('n', "<leader>vm", jdtls.test_nearest_method, { desc = "Test method (DAP)" }
 
 
 local attempt = require('attempt')
+local telescope = require('telescope').extensions.attempt
 
 map('n', '<leader>an', attempt.new_select)        -- new attempt, selecting extension
 map('n', '<leader>ai', attempt.new_input_ext)     -- new attempt, inputing extension
 map('n', '<leader>ar', attempt.run)               -- run attempt
 map('n', '<leader>ad', attempt.delete_buf)        -- delete attempt from current buffer
 map('n', '<leader>ac', attempt.rename_buf)        -- rename attempt from current buffer
-map('n', '<leader>al', 'Telescope attempt')       -- search through attempts
-
+--map('n', '<leader>al', 'Telescope attempt')       -- search through attempts
+map('n', '<leader>al', attempt.open_select)
 
 -- tmux
 map('n', '<c-h>', '<cmd>TmuxNavigateLeft<cr>', { silent = true })
@@ -121,3 +125,22 @@ map('n', '<c-j>', '<cmd>TmuxNavigateDown<cr>', { silent = true })
 map('n', '<c-k>', '<cmd>TmuxNavigateUp<cr>', { silent = true })
 map('n', '<c-l>', '<cmd>TmuxNavigateRight<cr>', { silent = true })
 map('n', '<c-\\>', '<cmd>TmuxNavigatePrevious<cr>', { silent = true })
+
+-- harpoon
+local harpoon = require("harpoon")
+
+-- REQUIRED
+harpoon:setup()
+-- REQUIRED
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+--vim.keymap.set("n", "<C-U>", function() harpoon:list():select(1) end)
+--vim.keymap.set("n", "<C-I>", function() harpoon:list():select(2) end)
+--vim.keymap.set("n", "<C-O>", function() harpoon:list():select(3) end)
+--vim.keymap.set("n", "<C-P>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
